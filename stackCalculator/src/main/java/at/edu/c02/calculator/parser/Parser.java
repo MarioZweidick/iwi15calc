@@ -11,6 +11,7 @@ import javax.xml.stream.events.*;
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 
 public class Parser {
 
@@ -78,7 +79,8 @@ public class Parser {
 			return Operation.div;
 		else if ("-".equals(value))
 			return Operation.sub;
-		
+		else if ("%".equals(value))
+			return Operation.modulo;
 		throw new CalculatorException("Unsupported Operation!");
 	}
 }
