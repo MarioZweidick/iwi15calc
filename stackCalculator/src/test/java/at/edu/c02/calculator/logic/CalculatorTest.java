@@ -3,6 +3,7 @@ package at.edu.c02.calculator.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import at.edu.c02.calculator.Calculator;
@@ -84,5 +85,28 @@ public class CalculatorTest {
 			// e.getCause()
 		}
 
+	}
+
+	@Test
+	public void testModulo() throws  Exception
+	{
+		Calculator calc = new CalculatorImpl();
+
+		calc.push(2);
+		calc.push(2);
+		double result = calc.perform(Operation.modulo);
+		Assert.assertEquals(0.0,result,0);
+
+		calc = new CalculatorImpl();
+		calc.push(1);
+		calc.push(2);
+		result = calc.perform(Operation.modulo);
+		Assert.assertEquals(1.0,result,0);
+
+		calc = new CalculatorImpl();
+		calc.push(1);
+		calc.push(2);
+		result = calc.perform(Operation.modulo);
+		Assert.assertNotSame(0.0,result);
 	}
 }
