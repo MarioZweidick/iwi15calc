@@ -9,7 +9,6 @@ import org.junit.Test;
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
-import at.edu.c02.calculator.logic.CalculatorImpl;
 
 public class CalculatorTest {
 
@@ -111,11 +110,11 @@ public class CalculatorTest {
 	{
 		Calculator cal = new CalculatorImpl();
 		cal.push(90);
-		Assert.assertEquals(cal.perform1Var(Operation.cos),-0.4480736161,0.0001);
+		Assert.assertEquals(cal.perform(Operation.cos),-0.4480736161,0.0001);
 
 		cal = new CalculatorImpl();
 		cal.push(0);
-		Assert.assertEquals(cal.perform1Var(Operation.cos),1,0);
+		Assert.assertEquals(cal.perform(Operation.cos),1,0);
 	}
 
 	@Test
@@ -123,10 +122,10 @@ public class CalculatorTest {
 	{
 		Calculator cal = new CalculatorImpl();
 		cal.push(90);
-		Assert.assertEquals(cal.perform1Var(Operation.sin),0.89399666360056,0.001);
+		Assert.assertEquals(cal.perform(Operation.sin),0.89399666360056,0.001);
 
 		cal = new CalculatorImpl();
 		cal.push(0);
-		Assert.assertEquals(cal.perform1Var(Operation.sin),0,0);
+		Assert.assertEquals(cal.perform(Operation.sin),0,0);
 	}
 }

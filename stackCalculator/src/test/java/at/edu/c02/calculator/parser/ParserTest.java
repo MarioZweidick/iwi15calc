@@ -3,15 +3,11 @@ package at.edu.c02.calculator.parser;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import at.edu.c02.calculator.CalculatorException;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.Calculator.Operation;
-import at.edu.c02.calculator.parser.Parser;
-
-import javax.xml.stream.XMLStreamException;
 
 public class ParserTest {
 
@@ -70,6 +66,18 @@ public class ParserTest {
 		verify(cal).push(4);
 		verify(cal).perform(Operation.add);
 
+	}
+
+	@Test
+	public void TestParserTestSin() throws Exception
+	{
+		Calculator cal = mock(Calculator.class);
+
+		Parser parser = new Parser(cal);
+		parser.parse(new File("src/test/resources/test06.xml"));
+
+		verify(cal).push(6);
+		verify(cal).perform(Operation.sin);
 	}
 
 }

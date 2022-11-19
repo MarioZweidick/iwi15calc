@@ -11,10 +11,16 @@ public class CalculatorImpl implements Calculator {
 	private Stack<Double> stack_ = new Stack<Double>();
 
 	@Override
-	public double perform(Operation op) throws CalculatorException {
+	public double perform(Operation op) throws CalculatorException
+	{
+		double b = 0.0;
+		double a = 0.0;
 
-		double b = pop();
-		double a = pop();
+		b = pop();
+		if(op.sin != Operation.sin && op.cos != Operation.cos )
+		{
+		 	a = pop();
+		}
 
 		switch (op) {
 		case add:
@@ -34,25 +40,13 @@ public class CalculatorImpl implements Calculator {
 				throw new CalculatorException("Modulo by zero");
 			}
 			return test;
+		case sin:
+			return Math.sin(b);
+		case cos:
+			return Math.cos(b);
+		default:
+			throw new CalculatorException("Invalid operation Variable");
 
-
-		}
-		return 0;
-	}
-
-	@Override
-	public double perform1Var(Operation op) throws CalculatorException
-	{
-		double a = pop();
-
-		switch (op)
-		{
-			case sin:
-				return Math.sin(a);
-			case cos:
-				return Math.cos(a);
-			default:
-				throw new CalculatorException("Invalid operation for single variable");
 		}
 	}
 
