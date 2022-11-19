@@ -17,7 +17,7 @@ public class CalculatorImpl implements Calculator {
 		double a = 0.0;
 
 		b = pop();
-		if(op.sin != Operation.sin && op.cos != Operation.cos )
+		if(op != Operation.sin && op != Operation.cos)
 		{
 		 	a = pop();
 		}
