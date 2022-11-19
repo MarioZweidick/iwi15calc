@@ -10,6 +10,8 @@ import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
 import at.edu.c02.calculator.logic.CalculatorImpl;
 
+import java.util.ArrayList;
+
 public class CalculatorTest {
 
 	@Test
@@ -83,6 +85,26 @@ public class CalculatorTest {
 			assertEquals("Division by zero", e.getMessage());
 			// e.getCause()
 		}
+
+	}
+
+	public void testSkalarprodukt(){
+
+		Calculator calc = new CalculatorImpl();
+
+		ArrayList vectorOne = new ArrayList();
+		ArrayList vectorTwo = new ArrayList();
+
+		vectorOne.add(2);
+		vectorOne.add(2);
+		vectorOne.add(2);
+
+		vectorTwo.add(3);
+		vectorTwo.add(3);
+		vectorTwo.add(3);
+
+		Double result = calc.perform(Operation.skalar);
+		assertEquals(18, result, 0);
 
 	}
 }
