@@ -34,8 +34,7 @@ public class CalculatorImpl implements Calculator {
 				throw new CalculatorException("Modulo by zero");
 			}
 			return test;
-		case sin:
-		case cos:
+
 
 		}
 		return 0;
@@ -44,7 +43,17 @@ public class CalculatorImpl implements Calculator {
 	@Override
 	public double perform1Var(Operation op) throws CalculatorException
 	{
-		return 0.0;
+		double a = pop();
+
+		switch (op)
+		{
+			case sin:
+				return Math.sin(a);
+			case cos:
+				return Math.cos(a);
+			default:
+				throw new CalculatorException("Invalid operation for single variable");
+		}
 	}
 
 	@Override

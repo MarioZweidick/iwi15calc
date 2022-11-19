@@ -53,10 +53,6 @@ public class CalculatorTest {
 		assertEquals(3, result, 0);
 
 	}
-	
-	
-	
-	
 
 	//
 	@Test(expected = CalculatorException.class)
@@ -115,11 +111,11 @@ public class CalculatorTest {
 	{
 		Calculator cal = new CalculatorImpl();
 		cal.push(90);
-		Assert.assertEquals(cal.perform(Operation.cos),0,0);
+		Assert.assertEquals(cal.perform1Var(Operation.cos),-0.4480736161,0.0001);
 
 		cal = new CalculatorImpl();
 		cal.push(0);
-		Assert.assertEquals(cal.perform(Operation.cos),1,0);
+		Assert.assertEquals(cal.perform1Var(Operation.cos),1,0);
 	}
 
 	@Test
