@@ -34,8 +34,17 @@ public class CalculatorImpl implements Calculator {
 				throw new CalculatorException("Modulo by zero");
 			}
 			return test;
+		case sin:
+		case cos:
+
 		}
 		return 0;
+	}
+
+	@Override
+	public double perform1Var(Operation op) throws CalculatorException
+	{
+		return 0.0;
 	}
 
 	@Override

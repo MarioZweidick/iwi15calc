@@ -109,4 +109,28 @@ public class CalculatorTest {
 		result = calc.perform(Operation.modulo);
 		Assert.assertNotSame(0.0,result);
 	}
+
+	@Test
+	public void testCos() throws Exception
+	{
+		Calculator cal = new CalculatorImpl();
+		cal.push(90);
+		Assert.assertEquals(cal.perform(Operation.cos),0,0);
+
+		cal = new CalculatorImpl();
+		cal.push(0);
+		Assert.assertEquals(cal.perform(Operation.cos),1,0);
+	}
+
+	@Test
+	public void testSin() throws Exception
+	{
+		Calculator cal = new CalculatorImpl();
+		cal.push(90);
+		Assert.assertEquals(cal.perform1Var(Operation.sin),0.89399666360056,0.001);
+
+		cal = new CalculatorImpl();
+		cal.push(0);
+		Assert.assertEquals(cal.perform1Var(Operation.sin),0,0);
+	}
 }
