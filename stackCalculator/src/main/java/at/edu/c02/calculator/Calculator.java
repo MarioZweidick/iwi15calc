@@ -4,7 +4,7 @@ package at.edu.c02.calculator;
 public interface Calculator {
 
 	enum Operation {
-		add, sub, mul, div, modulo
+		add, sub, mul, div, modulo, skalar
 	};
 
 	void push(double value);
