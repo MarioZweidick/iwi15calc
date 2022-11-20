@@ -87,24 +87,44 @@ public class CalculatorTest {
 		}
 
 	}
+	@Test
+	public void testSkalarprodukt() throws CalculatorException{
 
-	public void testSkalarprodukt(){
 
 		Calculator calc = new CalculatorImpl();
+		calc.push(2);
+		calc.push(2);
+		calc.push(2);
 
-		ArrayList vectorOne = new ArrayList();
-		ArrayList vectorTwo = new ArrayList();
+		calc.push(3);
+		calc.push(3);
+		calc.push(3);
+		calc.push(3);
 
-		vectorOne.add(2);
-		vectorOne.add(2);
-		vectorOne.add(2);
 
-		vectorTwo.add(3);
-		vectorTwo.add(3);
-		vectorTwo.add(3);
 
 		Double result = calc.perform(Operation.skalar);
 		assertEquals(18, result, 0);
 
 	}
+	@Test
+	public void testSkalarFehler() throws CalculatorException{
+		Calculator cal  = new CalculatorImpl();
+	try {
+
+
+		cal.push(2);
+		cal.push(2);
+		cal.push(3);
+		cal.push(3);
+		cal.push(2);
+		cal.push(5);
+
+		cal.perform(Operation.skalar);
+	}
+	catch (CalculatorException e){
+		assertEquals("Vektoren brauchen die selben Dimensionen!",e.getMessage());
+	}
+	}
+
 }

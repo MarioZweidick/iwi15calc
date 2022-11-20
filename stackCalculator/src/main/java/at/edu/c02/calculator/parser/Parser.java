@@ -46,6 +46,7 @@ public class Parser {
 					.getLocalPart())) {
 				result = calc_.perform(readOperation(value));
 			}
+
 		}
 
 		return result;
@@ -82,6 +83,7 @@ public class Parser {
 			return Operation.modulo;
 		else if ("Skalar".equals(value)){
 			return Operation.skalar;
+
 		}
 		throw new CalculatorException("Unsupported Operation!");
 	}

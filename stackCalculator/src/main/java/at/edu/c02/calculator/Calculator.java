@@ -5,7 +5,7 @@ public interface Calculator {
 
 	enum Operation {
 		add, sub, mul, div, modulo, skalar
-	};
+	}
 
 	void push(double value);
 	

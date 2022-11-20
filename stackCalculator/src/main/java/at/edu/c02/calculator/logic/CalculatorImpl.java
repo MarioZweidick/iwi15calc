@@ -13,9 +13,15 @@ public class CalculatorImpl implements Calculator {
 
 	@Override
 	public double perform(Operation op) throws CalculatorException {
-
 		double b = pop();
-		double a = pop();
+		double a = 0;
+
+		if(op != Operation.skalar){
+			a  = pop();
+		}
+
+
+
 
 		switch (op) {
 			case add:
@@ -35,6 +41,33 @@ public class CalculatorImpl implements Calculator {
 					throw new CalculatorException("Modulo by zero");
 				}
 				return test;
+
+			case skalar:
+				int size = (int) b;
+
+				double ergebnis= 0;
+				ArrayList<Double> vectorOne = new ArrayList<>();
+				ArrayList<Double> vectorTwo = new ArrayList<>();
+				for (int i = 0; i < size; i++) {
+					if(!stack_.empty())
+						vectorOne.add(stack_.pop());
+				}
+				for (int i = 0; i < size; i++) {
+					if(!stack_.empty())
+						vectorTwo.add(stack_.pop());
+				}
+				if(vectorOne.size()!=vectorTwo.size()){
+					throw new CalculatorException("Vektoren brauchen die selben Dimensionen!");
+				}
+
+				for (int i = 0; i < vectorOne.size(); i++) {
+
+					ergebnis += vectorOne.get(i) * vectorTwo.get(i);
+
+				}
+				return ergebnis;
+
+
 		}
 		return 0;
 	}
@@ -56,32 +89,5 @@ public class CalculatorImpl implements Calculator {
 		stack_.clear();
 	}
 
-	public double performSkalar(Operation skalar) throws CalculatorException {
 
-		double ergebnis = 0;
-
-		double data = stack_.pop();
-		int size = (int) data;
-
-		ArrayList<Double> vectorOne = new ArrayList<>();
-		ArrayList<Double> vectorTwo = new ArrayList<>();
-
-		for (int i = 0; i < size; i++) {
-			vectorOne.add(stack_.pop());
-		}
-		for (int i = 0; i < size; i++) {
-			vectorTwo.add(stack_.pop());
-		}
-
-		if(vectorOne.size() != vectorTwo.size()){
-			throw new CalculatorException("Vektoren sind nicht gleich lang");
-		}
-
-		for (int i = 0; i < vectorOne.size(); i++) {
-
-			ergebnis += vectorOne.get(i) * vectorTwo.get(i);
-
-		}
-		return ergebnis;
-	}
 }
