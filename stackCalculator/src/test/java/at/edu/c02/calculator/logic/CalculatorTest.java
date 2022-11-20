@@ -10,6 +10,8 @@ import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
 
+import java.util.ArrayList;
+
 public class CalculatorTest {
 
 	@Test
@@ -82,6 +84,7 @@ public class CalculatorTest {
 
 	}
 
+
 	@Test
 	public void testModulo() throws  Exception
 	{
@@ -128,4 +131,46 @@ public class CalculatorTest {
 		cal.push(0);
 		Assert.assertEquals(cal.perform(Operation.sin),0,0);
 	}
+  
+  
+  	@Test
+	public void testSkalarprodukt() throws CalculatorException{
+
+
+		Calculator calc = new CalculatorImpl();
+		calc.push(2);
+		calc.push(2);
+		calc.push(2);
+
+		calc.push(3);
+		calc.push(3);
+		calc.push(3);
+		calc.push(3);
+
+
+
+		Double result = calc.perform(Operation.skalar);
+		assertEquals(18, result, 0);
+
+	}
+	@Test
+	public void testSkalarFehler() throws CalculatorException{
+		Calculator cal  = new CalculatorImpl();
+	  try {
+
+
+		  cal.push(2);
+		  cal.push(2);
+		  cal.push(3);
+		  cal.push(3);
+		  cal.push(2);
+		  cal.push(5);
+
+		  cal.perform(Operation.skalar);
+	  }
+	  catch (CalculatorException e){
+		  assertEquals("Vektoren brauchen die selben Dimensionen!",e.getMessage());
+	  }
+  }
+
 }

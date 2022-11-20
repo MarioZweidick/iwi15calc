@@ -1,5 +1,6 @@
 package at.edu.c02.calculator.logic;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import at.edu.c02.calculator.Calculator;
@@ -13,10 +14,9 @@ public class CalculatorImpl implements Calculator {
 	@Override
 	public double perform(Operation op) throws CalculatorException
 	{
-		double b = 0.0;
+		double b = pop();
 		double a = 0.0;
 
-		b = pop();
 		if(op != Operation.sin && op != Operation.cos)
 		{
 		 	a = pop();
@@ -44,6 +44,32 @@ public class CalculatorImpl implements Calculator {
 			return Math.sin(b);
 		case cos:
 			return Math.cos(b);
+    
+		case skalar:
+			int size = (int) b;
+
+			double ergebnis= 0;
+			ArrayList<Double> vectorOne = new ArrayList<>();
+			ArrayList<Double> vectorTwo = new ArrayList<>();
+			
+        for (int i = 0; i < size; i++) {
+					if(!stack_.empty())
+						vectorOne.add(stack_.pop());
+				}
+        for (int i = 0; i < size; i++) {
+					if(!stack_.empty())
+						vectorTwo.add(stack_.pop());
+				}
+				if(vectorOne.size()!=vectorTwo.size()){
+					throw new CalculatorException("Vektoren brauchen die selben Dimensionen!");
+				}
+
+				for (int i = 0; i < vectorOne.size(); i++) {
+
+					ergebnis += vectorOne.get(i) * vectorTwo.get(i);
+
+				}
+				return ergebnis;
 		default:
 			throw new CalculatorException("Invalid operation Variable");
 
@@ -66,5 +92,6 @@ public class CalculatorImpl implements Calculator {
 	public void clear() {
 		stack_.clear();
 	}
+
 
 }

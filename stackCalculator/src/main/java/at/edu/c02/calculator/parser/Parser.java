@@ -46,6 +46,7 @@ public class Parser {
 					.getLocalPart())) {
 				result = calc_.perform(readOperation(value));
 			}
+
 		}
 
 		return result;
@@ -80,6 +81,8 @@ public class Parser {
 			return Operation.sub;
 		else if ("%".equals(value))
 			return Operation.modulo;
+		else if ("Skalar".equals(value))
+			return Operation.skalar;
 		else if ("sin".equals(value))
 			return Operation.sin;
 		else if ("cos".equals(value))
