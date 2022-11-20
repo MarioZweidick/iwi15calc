@@ -8,7 +8,6 @@ import static org.mockito.Mockito.*;
 
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.Calculator.Operation;
-import at.edu.c02.calculator.parser.Parser;
 
 public class ParserTest {
 
@@ -40,7 +39,48 @@ public class ParserTest {
 
 		verifyNoMoreInteractions(cal);
 	}
+
 	@Test
+	public  void testParserTestModulo() throws Exception
+	{
+		Calculator cal = mock(Calculator.class);
+
+		Parser parser = new Parser(cal);
+		parser.parse(new File("src/test/resources/test04.xml"));
+
+		verify(cal).push(2.0);
+		verify(cal).push(1.0);
+		verify(cal).perform(Operation.modulo);
+
+	}
+
+	@Test
+	public  void testParserTest3Add() throws Exception
+	{
+		Calculator cal = mock(Calculator.class);
+
+		Parser parser = new Parser(cal);
+		parser.parse(new File("src/test/resources/test05.xml"));
+
+		verify(cal).push(6);
+		verify(cal).push(4);
+		verify(cal).perform(Operation.add);
+
+	}
+
+	@Test
+	public void TestParserTestSin() throws Exception
+	{
+		Calculator cal = mock(Calculator.class);
+
+		Parser parser = new Parser(cal);
+		parser.parse(new File("src/test/resources/test06.xml"));
+
+		verify(cal).push(6);
+		verify(cal).perform(Operation.sin);
+	}
+  
+  	@Test
 	public void testParserTestSkalarXml() throws Exception{
 		Calculator cal = mock(Calculator.class);
 
@@ -54,4 +94,6 @@ public class ParserTest {
 		verifyNoMoreInteractions(cal);
 
 	}
+
+
 }

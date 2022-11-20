@@ -81,10 +81,13 @@ public class Parser {
 			return Operation.sub;
 		else if ("%".equals(value))
 			return Operation.modulo;
-		else if ("Skalar".equals(value)){
+		else if ("Skalar".equals(value))
 			return Operation.skalar;
-
-		}
+		else if ("sin".equals(value))
+			return Operation.sin;
+		else if ("cos".equals(value))
+			return Operation.cos;
+		
 		throw new CalculatorException("Unsupported Operation!");
 	}
 }

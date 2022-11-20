@@ -3,12 +3,12 @@ package at.edu.c02.calculator.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
-import at.edu.c02.calculator.logic.CalculatorImpl;
 
 import java.util.ArrayList;
 
@@ -54,10 +54,6 @@ public class CalculatorTest {
 		assertEquals(3, result, 0);
 
 	}
-	
-	
-	
-	
 
 	//
 	@Test(expected = CalculatorException.class)
@@ -87,7 +83,57 @@ public class CalculatorTest {
 		}
 
 	}
+
+
 	@Test
+	public void testModulo() throws  Exception
+	{
+		Calculator calc = new CalculatorImpl();
+
+		calc.push(2);
+		calc.push(2);
+		double result = calc.perform(Operation.modulo);
+		Assert.assertEquals(0.0,result,0);
+
+		calc = new CalculatorImpl();
+		calc.push(1);
+		calc.push(2);
+		result = calc.perform(Operation.modulo);
+		Assert.assertEquals(1.0,result,0);
+
+		calc = new CalculatorImpl();
+		calc.push(1);
+		calc.push(2);
+		result = calc.perform(Operation.modulo);
+		Assert.assertNotSame(0.0,result);
+	}
+
+	@Test
+	public void testCos() throws Exception
+	{
+		Calculator cal = new CalculatorImpl();
+		cal.push(90);
+		Assert.assertEquals(cal.perform(Operation.cos),-0.4480736161,0.0001);
+
+		cal = new CalculatorImpl();
+		cal.push(0);
+		Assert.assertEquals(cal.perform(Operation.cos),1,0);
+	}
+
+	@Test
+	public void testSin() throws Exception
+	{
+		Calculator cal = new CalculatorImpl();
+		cal.push(90);
+		Assert.assertEquals(cal.perform(Operation.sin),0.89399666360056,0.001);
+
+		cal = new CalculatorImpl();
+		cal.push(0);
+		Assert.assertEquals(cal.perform(Operation.sin),0,0);
+	}
+  
+  
+  	@Test
 	public void testSkalarprodukt() throws CalculatorException{
 
 
@@ -110,21 +156,21 @@ public class CalculatorTest {
 	@Test
 	public void testSkalarFehler() throws CalculatorException{
 		Calculator cal  = new CalculatorImpl();
-	try {
+	  try {
 
 
-		cal.push(2);
-		cal.push(2);
-		cal.push(3);
-		cal.push(3);
-		cal.push(2);
-		cal.push(5);
+		  cal.push(2);
+		  cal.push(2);
+		  cal.push(3);
+		  cal.push(3);
+		  cal.push(2);
+		  cal.push(5);
 
-		cal.perform(Operation.skalar);
-	}
-	catch (CalculatorException e){
-		assertEquals("Vektoren brauchen die selben Dimensionen!",e.getMessage());
-	}
-	}
+		  cal.perform(Operation.skalar);
+	  }
+	  catch (CalculatorException e){
+		  assertEquals("Vektoren brauchen die selben Dimensionen!",e.getMessage());
+	  }
+  }
 
 }

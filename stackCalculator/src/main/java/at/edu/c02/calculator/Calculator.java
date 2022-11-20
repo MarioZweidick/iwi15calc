@@ -3,8 +3,9 @@ package at.edu.c02.calculator;
 
 public interface Calculator {
 
-	enum Operation {
-		add, sub, mul, div, modulo, skalar
+	enum Operation 
+  {
+		add, sub, mul, div, modulo, sin, cos, skalar
 	}
 
 	void push(double value);
@@ -12,6 +13,6 @@ public interface Calculator {
 	double pop() throws CalculatorException;
 	
 	double perform(Operation op) throws CalculatorException;
-	
+
 	void clear(); 
 }
