@@ -4,9 +4,14 @@
 	<push value="2" />
 	<operation value="+"/>
 	<push value="result"/>
-	<operation value="store"/>
-	<operation value="load"/>
+	<store/>
+	<load/>
 	<push value="4"/>
 	<operation value="*" />
-	<operation value="store"/>
+	<push value="result"/>
+	<store/>
+	<push value="5"/>
+	<load/>
+	<operation value="-"/>
+	<operation value="result"/>
 </calculation>
