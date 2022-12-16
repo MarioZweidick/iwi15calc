@@ -101,9 +101,6 @@ public class ParserTest {
 		Parser parser = new Parser(cal);
 
 		parser.parse(new File("src/test/resourecs/test07.xml"));
-		verify(cal).push(1.0);
-		verify(cal).push(2.0);
-
 	}
 
 
