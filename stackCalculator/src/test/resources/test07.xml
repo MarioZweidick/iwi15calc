@@ -6,12 +6,4 @@
 	<push value="result"/>
 	<store/>
 	<load/>
-	<push value="4"/>
-	<operation value="*" />
-	<push value="result"/>
-	<store/>
-	<push value="5"/>
-	<load/>
-	<operation value="-"/>
-	<operation value="result"/>
 </calculation>

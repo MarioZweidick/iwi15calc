@@ -3,6 +3,7 @@ package at.edu.c02.calculator.parser;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import at.edu.c02.calculator.logic.CalculatorImpl;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
@@ -100,7 +101,14 @@ public class ParserTest {
 		Calculator cal = mock(Calculator.class);
 		Parser parser = new Parser(cal);
 
-		parser.parse(new File("src/test/resourecs/test07.xml"));
+		parser.parse(new File("src/test/resources/test07.xml"));
+		verify(cal).push(1);
+		verify(cal).push(2);
+		verify(cal).perform(Operation.add);
+		verify(cal).push(3);
+		verify(cal).setStoredValue(3);
+		verify(cal).loadStoredValue();
+		verifyNoMoreInteractions(cal);
 	}
 
 
