@@ -50,6 +50,7 @@ public class Parser {
 
 			} else if ("load".equals(e.asStartElement().getName().getLocalPart())) {
 				result = calc_.loadStoredValue();
+				calc_.push(result);
 			}
 
 		}
