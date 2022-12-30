@@ -171,6 +171,16 @@ public class CalculatorTest {
 	  catch (CalculatorException e){
 		  assertEquals("Vektoren brauchen die selben Dimensionen!",e.getMessage());
 	  }
-  }
+	}
+
+	@Test
+	public void testStore() throws CalculatorException {
+		Calculator cal = new CalculatorImpl();
+		cal.setStoredValue(3.0);
+		assertEquals(cal.loadStoredValue(), 3.0, 0);
+
+		cal.setStoredValue(5.0);
+		Assert.assertNotSame(cal.loadStoredValue(),3.0);
+	}
 
 }

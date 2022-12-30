@@ -5,7 +5,7 @@ public interface Calculator {
 
 	enum Operation 
   {
-		add, sub, mul, div, modulo, sin, cos, skalar
+		add, sub, mul, div, modulo, sin, cos, skalar,  store, load,
 	}
 
 	void push(double value);
@@ -14,5 +14,10 @@ public interface Calculator {
 	
 	double perform(Operation op) throws CalculatorException;
 
-	void clear(); 
+	void clear();
+
+	double loadStoredValue();
+
+	void setStoredValue(double storedValue);
+
 }

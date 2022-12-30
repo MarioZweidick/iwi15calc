@@ -45,12 +45,20 @@ public class Parser {
 			} else if ("operation".equals(e.asStartElement().getName()
 					.getLocalPart())) {
 				result = calc_.perform(readOperation(value));
+			} else if ("store".equals(e.asStartElement().getName().getLocalPart())) {
+				calc_.setStoredValue(result);
+
+			} else if ("load".equals(e.asStartElement().getName().getLocalPart())) {
+				result = calc_.loadStoredValue();
+				calc_.push(result);
 			}
 
 		}
 
 		return result;
 	}
+
+
 
 	private XMLEventReader createXmlEventReader(File calculation)
 			throws FactoryConfigurationError, FileNotFoundException,
@@ -87,7 +95,8 @@ public class Parser {
 			return Operation.sin;
 		else if ("cos".equals(value))
 			return Operation.cos;
-		
-		throw new CalculatorException("Unsupported Operation!");
+		else {
+			throw new CalculatorException("Unsupported Operation!");
+		}
 	}
 }
