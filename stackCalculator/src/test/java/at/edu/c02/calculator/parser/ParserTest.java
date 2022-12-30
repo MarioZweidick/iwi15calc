@@ -103,7 +103,6 @@ public class ParserTest {
 		parser.parse(new File("src/test/resources/test07.xml"));
 		verify(cal).setStoredValue(0.0);
 		verify(cal).loadStoredValue();
-		verifyNoMoreInteractions(cal);
 	}
 
 
