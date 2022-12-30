@@ -1,8 +1,10 @@
 package at.edu.c02.calculator.parser;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.security.KeyException;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.*;
@@ -11,12 +13,14 @@ import javax.xml.stream.events.*;
 import at.edu.c02.calculator.Calculator;
 import at.edu.c02.calculator.CalculatorException;
 import at.edu.c02.calculator.Calculator.Operation;
+import at.edu.c02.calculator.logic.Store;
 
 public class Parser {
 
 	private Calculator calc_;
-
+	private Store store; 
 	public Parser(Calculator cal) {
+		store = new Store();
 		if (cal == null)
 			throw new IllegalArgumentException("Calculator not set");
 		calc_ = cal;
@@ -42,14 +46,23 @@ public class Parser {
 			} else if ("pop"
 					.equals(e.asStartElement().getName().getLocalPart())) {
 				calc_.pop();
-			} else if ("operation".equals(e.asStartElement().getName()
-					.getLocalPart())) {
+			} else if ("operation".equals(e.asStartElement().getName().getLocalPart())) {
 				result = calc_.perform(readOperation(value));
 			} else if ("store".equals(e.asStartElement().getName().getLocalPart())) {
-				calc_.setStoredValue(result);
-
+				if (checkValueExsists(value))
+				{
+					saveValueInStore(value,result);
+				}
+				else {
+					calc_.setStoredValue(result);
+				}
 			} else if ("load".equals(e.asStartElement().getName().getLocalPart())) {
-				result = calc_.loadStoredValue();
+				if (checkValueExsists(value)) {
+					result =restorValueOfStore(value);
+				}
+				else {
+					result = calc_.loadStoredValue();
+				}
 				calc_.push(result);
 			}
 
@@ -99,4 +112,30 @@ public class Parser {
 			throw new CalculatorException("Unsupported Operation!");
 		}
 	}
+	
+	private boolean checkValueExsists(String value)
+	{
+		if("".equals(value))
+		{
+			return false; 
+		}
+		return true; 
+	}
+	
+	private void saveValueInStore(String key,double result)
+	{
+		store.saveValue(key,result);
+	}
+	
+	private double restorValueOfStore(String key)
+	{
+		double getValue; 
+		try {
+			getValue = store.getValue(key);
+		} catch (KeyException e) {
+			throw new RuntimeException(e);
+		}
+		return getValue; 
+	}
+	
 }
