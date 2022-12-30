@@ -37,7 +37,6 @@ public class ParserTest {
 		verify(cal).push(1.0);
 		verify(cal).push(2.0);
 		verify(cal).perform(Operation.add);
-
 		verifyNoMoreInteractions(cal);
 	}
 
@@ -102,11 +101,7 @@ public class ParserTest {
 		Parser parser = new Parser(cal);
 
 		parser.parse(new File("src/test/resources/test07.xml"));
-		verify(cal).push(1);
-		verify(cal).push(2);
-		verify(cal).perform(Operation.add);
-		verify(cal).push(3);
-		verify(cal).setStoredValue(3);
+		verify(cal).setStoredValue(0.0);
 		verify(cal).loadStoredValue();
 		verifyNoMoreInteractions(cal);
 	}
