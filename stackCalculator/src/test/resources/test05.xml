@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <calculation>
-	<push value="6" />
-	<push value="4" />
-	<operation value="+" />
+    <push value="6"/>
+    <push value="4"/>
+    <operation value="+"/>
 </calculation>

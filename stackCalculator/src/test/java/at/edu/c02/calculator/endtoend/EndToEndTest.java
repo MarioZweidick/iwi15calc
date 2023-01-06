@@ -22,7 +22,7 @@ public class EndToEndTest {
         Parser parser = new Parser(cal);
 
         double result = parser.parse(new File("src/test/resources/test08.xml"));
-        assertEquals(result,6,0);
+        assertEquals(result, 6, 0);
 
     }
 
@@ -32,7 +32,7 @@ public class EndToEndTest {
         Parser parser = new Parser(cal);
 
         double result = parser.parse(new File("src/test/resources/test10.xml"));
-        assertEquals(result,6,0);
+        assertEquals(result, 6, 0);
 
     }
 }
