@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <calculation>
-	<store value="testvalue"/>
-	<load value="testvalue"/>
+    <store value="testvalue"/>
+    <load value="testvalue"/>
 </calculation>
